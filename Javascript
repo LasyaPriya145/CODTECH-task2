@@ -1,0 +1,31 @@
+// Function to handle adding a new recipe
+document.getElementById('recipe-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Get form values
+    const name = document.getElementById('recipe-name').value;
+    const ingredients = document.getElementById('recipe-ingredients').value;
+    const instructions = document.getElementById('recipe-instructions').value;
+
+    // Create a new recipe card
+    const recipeCard = document.createElement('div');
+    recipeCard.classList.add('recipe-card');
+
+    recipeCard.innerHTML = `
+        <h3>${name}</h3>
+        <p><strong>Ingredients:</strong> ${ingredients}</p>
+        <p><strong>Instructions:</strong> ${instructions}</p>
+        <button class="delete-button">Delete</button>
+    `;
+
+    // Append to the recipe list
+    document.getElementById('recipe-list').appendChild(recipeCard);
+
+    // Clear form fields
+    document.getElementById('recipe-form').reset();
+
+    // Add delete functionality
+    recipeCard.querySelector('.delete-button').addEventListener('click', function () {
+        recipeCard.remove();
+    });
+});
